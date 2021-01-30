@@ -1,4 +1,4 @@
-.wbdv-sticky-top {
+/*.wbdv-sticky-top {
     position: fixed;
     width: 100%;
     background-color: white;
@@ -7,4 +7,24 @@
 
 .wbdv-padding-5px {
     padding: 5px;
+}*/
+#courses {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#courses td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#courses tr:nth-child(even){background-color: #f2f2f2;}
+
+#courses tr:hover {background-color: #ddd;}
+
+#courses th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
 }

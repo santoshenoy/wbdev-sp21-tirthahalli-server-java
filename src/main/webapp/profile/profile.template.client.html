@@ -3,26 +3,17 @@
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Course Manager</title>
 </head>
 <body>
 <div class="container">
     <h1>Profile</h1>
-
-    <div class="alert alert-danger" role="alert">
-        Danger Will Robinson
-    </div>
-
-
-    <div class="alert alert-success" role="alert">
-        Yay!!!
-    </div>
-
-    <div class="mb-3 row">
-        <label
-                class="col-sm-2 col-form-label">
-            Username
-        </label>
+    <div class="alert alert-success" role="alert"> Successfully updated! </div>
+    <form>
+        <hr class="colorgraph">
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">
+                Username </label>
         <div class="col-sm-10">
             <input type="text"
                    readonly
@@ -31,18 +22,7 @@
                    value="alice"/>
         </div>
     </div>
-    <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">
-            Password
-        </label>
-        <div class="col-sm-10">
-            <input type="password"
-                   class="form-control"
-                   id="inputPassword">
-        </div>
-    </div>
-
-    <div class="mb-3 row">
+    <div class="form-group row">
         <label for="phone"
                class="col-sm-2 col-form-label">
             Phone
@@ -50,7 +30,7 @@
         <div class="col-sm-10">
             <input type="tel"
                    class="form-control"
-                   id="phone"/>
+                   id="phone" value = "(555) 123-4324"/>
         </div>
     </div>
 
@@ -85,30 +65,30 @@
     <div class="mb-3 row">
         <label for="dob"
                class="col-sm-2 col-form-label">
-            DOB
+            Date of Birth
         </label>
         <div class="col-sm-10">
             <input type="date"
                    class="form-control"
                    title="Please enter your DOB"
-                   value="2021-01-25"
+                   value="mm/dd/yyyy"
                    id="dob"/>
         </div>
     </div>
-
-    <div class="mb-3 row">
-        <label for="dob"
+        <hr class="colorgraph">
+        <br>
+    <div class="form-group row">
+        <label
                class="col-sm-2 col-form-label">
-
         </label>
-        <div class="col-sm-10">
-            <a class="btn btn-danger btn-block"
-               href="../index.html">
-                Logout
-            </a>
+        <div class="col-xs-5 col-sm-5 col-md-5">
+            <a href = "" class = "btn btn-lg btn-primary btn-block"> Update </a>
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5">
+            <a href="../index.html" class="btn btn-lg btn-danger btn-block">Logout</a>
         </div>
     </div>
-
+    </form>
 </div>
 </body>
 </html>
