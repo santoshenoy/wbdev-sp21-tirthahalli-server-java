@@ -1,78 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-
-    <title>Title</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="editor.style.client.css" rel="stylesheet"/>
+    <title>Course Editor</title>
 </head>
 <body>
-<div class="container">
-    <h1>Editor</h1>
-
-    <div class="row">
-        <div class="col-4">
-
-            <ul class="list-group">
-                <li class="list-group-item active">
-                    Module 1
-                    <i class="pull-right fa fa-trash"></i>
-                </li>
-                <li class="list-group-item">
-                    Module 2
-                    <i class="pull-right fa fa-trash"></i>
-                </li>
-                <li class="list-group-item">Module 3</li>
-                <li class="list-group-item">Module 4</li>
-                <li class="list-group-item">Module 5</li>
-                <li class="list-group-item">Module 6</li>
-                <li class="list-group-item">Module 7</li>
-            </ul>
-
-        </div>
-        <div class="col-8">
+<nav class="navbar navbar-expand-md navbar-light bg-primary">
+    <div class="container">
+        <div class="col-4"><h3>CS5610 - WebDev</h3></div>
+        <div class="col-8 ">
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        Active
-                        <i class="pull-right fa fa-trash"></i>
-                    </a>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link " aria-current="page" href="#" style = "color: white"> Build </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link active" href="#" style = "color: black">Pages</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link" href="#" style = "color: white">Themes</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link" href="#" style = "color: white">Store</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-                        <i class="fa fa-plus"></i>
-                    </a>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link" href="#" style = "color: white">Apps</a>
+                </li>
+                <li class="nav-item" style = "background-color: black">
+                    <a class="nav-link" href="#" style = "color: white">Settings</a>
                 </li>
             </ul>
-
-            <br/>
-
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+        </div>
+    </div>
+</nav>
+<div class="container modules_layout">
+    <div class="row ">
+        <div class="col-4">
+            <ul class="list-group ">
+                <li class="list-group-item list-group-item-dark active">Module 1 - JQUERY<i class="pull-right fa fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 2 - REACT<i class="pull-right fa fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 3 - REDUX <i class="pull-right fa fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 4 - NATIVE <i class="pull-right fas fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 5 - ANGULAR <i class="pull-right fas fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 6 - NODE <i class="pull-right fas fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark">Module 7 - MONGO <i class="pull-right fas fa-times"></i></li>
+                <li class="list-group-item list-group-item-dark"><a class="btn btn-success pull-right" href="#" > Add Module</a></i></li>
             </ul>
-
-
+        </div>
+        <div class="col-8 bg-light">
+            <div class="row pills-layout">
+                <div class="col-8">
+                    <a class="btn btn-primary"> Topic 1 </a>
+                    <a class="btn btn-primary active"> Topic 2 </a>
+                    <a class="btn btn-primary"> Topic 3 </a>
+                    <a class="btn btn-primary"> Topic 4 </a>
+                    <a class="btn btn-success" href="#">+</a></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
