@@ -1,44 +1,90 @@
-let $userNameFld
-let $passwordFld
-let $firstNameFld
-let $lastNameFld
-let $roleFld
-let $createBtn
-let $updateBtn
-let tBody
-let userAdminService = new AdminUserServiceClient()
-
-let users = [];
+var $userName
+var $password
+var $firstName
+var $lastName
+var $role
+var table
+var selectedUser = null
+var userAdminService = new AdminUserServiceClient()
+var users = [];
 
 function createUser(user) {
-
     userAdminService.createUser(user)
         .then(function (actualUser) {
                 users.push(actualUser)
-
-                $userNameFld.val("")
-                $passwordFld.val("")
-                $firstNameFld.val("")
-                $lastNameFld.val("")
-                $roleFld.val("ADMIN")
-
+                $userName.val("")
+                $password.val("")
+                $firstName.val("")
+                $lastName.val("")
+                $role.val("ADMIN")
                 renderUsers(users)
             }
         )
 }
 
+function renderUsers(users) {
+    table.empty()
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i]
+        table
+            .append(`
+                    <tr class= "wbdv-template wbdv-user wbdv-hidden" style="background-color: lightblue">
+                        <td class="wbdv-username">${user.username}</td>
+                        <td>&nbsp;</td>
+                        <td class="wbdv-first-name">${user.firstName}</td>
+                        <td class="wbdv-last-name">${user.lastName}</td>
+                        <td class="wbdv-role">${user.role}</td>
+                        <td class="wbdv-actions">
+                        <button class="btn">
+                           <i id="${i}" class="fa-2x fa fa-times wbdv-remove" ></i>
+                       </button>
+                       <button class="btn">
+                           <i id="${user._id}" class="fa-2x fa fa-edit wbdv-edit"></i>
+                        </button>
+                        </td>
+                    </tr>
+                `)
 
-let selectedUser = null
-function selectUser(event) {
+    }
+    var $remove = $('.wbdv-remove')
+    $remove.click(deleteUser)
+    var $edit = $('.wbdv-edit')
+    $edit.click(editUser)
+}
+
+
+function editUser(event) {
     let editBtn = $(event.target)
     let theId = editBtn.attr("id")
     selectedUser = users.find(user => user._id === theId)
 
-    $userNameFld.val(selectedUser.username)
-    $passwordFld.val(selectedUser.password)
-    $firstNameFld.val(selectedUser.firstName)
-    $lastNameFld.val(selectedUser.lastName)
-    $roleFld.val(selectedUser.role)
+    $userName.val(selectedUser.username)
+    $password.val(selectedUser.password)
+    $firstName.val(selectedUser.firstName)
+    $lastName.val(selectedUser.lastName)
+    $role.val(selectedUser.role)
+}
+
+function updateUser() {
+
+    selectedUser.username = $userName.val()
+    selectedUser.password = $password.val()
+    selectedUser.firstName = $firstName.val()
+    selectedUser.lastName = $lastName.val()
+    selectedUser.role = $role.val()
+
+    userAdminService.updateUser(selectedUser._id, selectedUser)
+        .then(function (status) {
+                var index = users.findIndex( user => user._id === selectedUser._id)
+                users[index] = selectedUser
+                $userName.val("")
+                $password.val("")
+                $firstName.val("")
+                $lastName.val("")
+                $role.val("ADMIN")
+                renderUsers(users)
+            }
+        )
 }
 
 function deleteUser(event) {
@@ -54,87 +100,28 @@ function deleteUser(event) {
         )
 }
 
-function renderUsers(users) {
-    tBody.empty()
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i]
-        tBody
-            .append(`
-                    <tr class= "wbdv-template wbdv-user wbdv-hidden">
-                        <td class="wbdv-username">${user.username}</td>
-                        <td>&nbsp;</td>
-                        <td class="wbdv-first-name">${user.firstName}</td>
-                        <td class="wbdv-last-name">${user.lastName}</td>
-                        <td class="wbdv-role">${user.role}</td>
-                        <td class="wbdv-actions">
-                        <button class="btn">
-                  <i id="${i}" class="fa-2x fa fa-times wbdv-remove" 
-                     ></i>
-                </button>
-                <button class="btn">
-                    <i class="fa-2x fa fa-pencil wbdv-edit" 
-                       id="${user._id}"></i>
-                </button>
-                        </td>
-                    </tr>
-                `)
-
-    }
-    $removeBtn = $('.wbdv-remove')
-    $removeBtn.click(deleteUser)
-
-    $editBtn = $('.wbdv-edit')
-    $editBtn.click(selectUser)
-
-}
-
-function updateUser() {
-
-    selectedUser.username = $userNameFld.val()
-    selectedUser.password = $passwordFld.val()
-    selectedUser.firstName = $firstNameFld.val()
-    selectedUser.lastName = $lastNameFld.val()
-    selectedUser.role = $roleFld.val()
-
-    userAdminService.updateUser(selectedUser._id, selectedUser)
-        .then(function (status) {
-                let index = users.findIndex( user => user._id === selectedUser._id)
-                users[index] = selectedUser
-
-                $userNameFld.val("")
-                $passwordFld.val("")
-                $firstNameFld.val("")
-                $lastNameFld.val("")
-                $roleFld.val("ADMIN")
-
-                renderUsers(users)
-            }
-        )
-
-}
-
 function main() {
-    $userNameFld = $(".wbdv-username-fld")
-    $passwordFld = $(".wbdv-password-fld")
-    $firstNameFld = $(".wbdv-firstName-fld")
-    $lastNameFld = $(".wbdv-lastName-fld")
-    $roleFld = $(".wbdv-role-fld")
-    tBody = jQuery("tbody")
+    $userName = $(".wbdv-username-fld")
+    $password = $(".wbdv-password-fld")
+    $firstName = $(".wbdv-firstName-fld")
+    $lastName = $(".wbdv-lastName-fld")
+    $role = $(".wbdv-role-fld")
+    table = jQuery("tbody")
 
-    $createBtn = $(".wbdv-create")
+    let $createBtn = $(".wbdv-create")
     $createBtn.click(() => {
             createUser({
-                username: $userNameFld.val(),
-                password: $passwordFld.val(),
-                firstName: $firstNameFld.val(),
-                lastName: $lastNameFld.val(),
-                role: $roleFld.val()
+                username: $userName.val(),
+                password: $password.val(),
+                firstName: $firstName.val(),
+                lastName: $lastName.val(),
+                role: $role.val()
             })
         }
     )
 
-    $updateBtn = $(".wbdv-update")
-    $updateBtn.click(updateUser)
+    var $update = $(".wbdv-update")
+    $update.click(updateUser)
 
     userAdminService.findAllUsers()
         .then(function (actualUsersFromServer) {
