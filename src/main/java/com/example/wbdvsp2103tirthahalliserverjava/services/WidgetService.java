@@ -12,7 +12,7 @@ public class WidgetService {
     private List<Widget> widgets = new ArrayList<Widget>();
 
     {
-        Widget w1 = new Widget(123l, "ABC123", "HEADING", 1, "Widgets for Topic ABC123");
+        /*Widget w1 = new Widget(123l, "ABC123", "HEADING", 1, "Widgets for Topic ABC123");
         Widget w2 = new Widget(234l, "ABC123", "PARAGRAPH", 1, "Lorem Ipsum");
         Widget w3 = new Widget(345l, "ABC234", "HEADING", 2, "Widgets for Topic ABC234");
         Widget w4 = new Widget(456l, "ABC234", "PARAGRAPH", 1, "Lorem Ipsum");
@@ -22,7 +22,7 @@ public class WidgetService {
         widgets.add(w2);
         widgets.add(w3);
         widgets.add(w4);
-        widgets.add(w5);
+        widgets.add(w5);*/
     }
 
     public Widget createWidgetForTopic(String topicId, Widget widget) {
@@ -32,26 +32,12 @@ public class WidgetService {
         return widget;
     }
 
-    public List<Widget> findAllWidgets() {
-        return widgets;
-    }
-
-    public List<Widget> findWidgetsForTopic(String topicId) {
-        List<Widget> ws = new ArrayList<Widget>();
-        for (Widget w : widgets) {
-            if (w.getTopicId() != null && w.getTopicId().equals(topicId)) {
-                ws.add(w);
-            }
-        }
-        return ws;
-    }
-
     public Integer deleteWidget(Long id) {
-        int index = -1;
+        //int index = -1;
         for (int i = 0; i < widgets.size(); i++) {
             if (widgets.get(i).getId().equals(id)) {
-                index = i;
-                widgets.remove(index);
+                //index = i;
+                widgets.remove(i);
                 return 1;
             }
         }
@@ -66,5 +52,19 @@ public class WidgetService {
             }
         }
         return -1;
+    }
+
+    public List<Widget> findAllWidgets() {
+        return widgets;
+    }
+
+    public List<Widget> findWidgetsForTopic(String topicId) {
+        List<Widget> list = new ArrayList<Widget>();
+        for (Widget widget : widgets) {
+            if (widget.getTopicId() != null && widget.getTopicId().equals(topicId)) {
+                list.add(widget);
+            }
+        }
+        return list;
     }
 }

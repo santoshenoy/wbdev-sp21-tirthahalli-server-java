@@ -7,6 +7,17 @@ public class Widget {
     private Integer size;
     private String text;
 
+    public Widget (Long id, String topicId, String type, Integer size, String text) {
+        this.id = id;
+        this.topicId = topicId;
+        this.type = type;
+        this.size = size;
+        this.text = text;
+    }
+
+    public Widget() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -47,14 +58,4 @@ public class Widget {
         this.text = text;
     }
 
-    public Widget(Long id, String topicId, String type, Integer size, String text) {
-        this.id = id;
-        this.topicId = topicId;
-        this.type = type;
-        this.size = size;
-        this.text = text;
-    }
-
-    public Widget() {
-    }
 }
