@@ -1,6 +1,8 @@
 package com.example.wbdvsp2103tirthahalliserverjava.services;
 
 import com.example.wbdvsp2103tirthahalliserverjava.model.Widget;
+import com.example.wbdvsp2103tirthahalliserverjava.repositories.WidgetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,6 +11,9 @@ import java.util.List;
 
 @Service
 public class WidgetService {
+    @Autowired
+    WidgetRepository repository;
+
     private List<Widget> widgets = new ArrayList<Widget>();
 
     {
@@ -27,44 +32,33 @@ public class WidgetService {
 
     public Widget createWidgetForTopic(String topicId, Widget widget) {
         widget.setTopicId(topicId);
-        widget.setId((new Date()).getTime());
-        widgets.add(widget);
-        return widget;
+        return repository.save(widget);
     }
 
     public Integer deleteWidget(Long id) {
-        //int index = -1;
-        for (int i = 0; i < widgets.size(); i++) {
-            if (widgets.get(i).getId().equals(id)) {
-                //index = i;
-                widgets.remove(i);
-                return 1;
-            }
-        }
-        return -1;
+        repository.deleteById(id);
+        return 1;
     }
 
     public Integer updateWidget(Long id, Widget widget) {
-        for (int i = 0; i < widgets.size(); i++) {
-            if (widgets.get(i).getId().equals(id)) {
-                widgets.set(i, widget);
-                return 1;
-            }
-        }
-        return -1;
+        Widget widget1 = repository.findWidgetsById(id);
+        widget1.setText(widget.getText());
+        widget1.setType(widget.getType());
+        widget1.setSize(widget.getSize());
+        widget1.setWidth(widget.getWidth());
+        widget1.setHeight(widget.getHeight());
+        widget1.setUrl(widget.getUrl());
+        widget1.setWidgetOrder(widget.getWidgetOrder());
+        widget1.setValue(widget.getValue());
+        repository.save(widget1);
+        return 1;
     }
 
     public List<Widget> findAllWidgets() {
-        return widgets;
+        return (List<Widget>) repository.findAll();
     }
 
     public List<Widget> findWidgetsForTopic(String topicId) {
-        List<Widget> list = new ArrayList<Widget>();
-        for (Widget widget : widgets) {
-            if (widget.getTopicId() != null && widget.getTopicId().equals(topicId)) {
-                list.add(widget);
-            }
-        }
-        return list;
+        return repository.findWidgetsForTopic(topicId);
     }
 }
